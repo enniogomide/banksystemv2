@@ -254,9 +254,6 @@ class Cliente:
         resultado = transacao.registrar(conta)
         return resultado
 
-    def adicionar_conta(self, conta):
-        self.contas.append(conta)
-
     def __str__(self):
         return f"{self.__class__.__name__}: {', '.join([f'{chave}={valor}'
                                                         for chave, valor in
@@ -285,20 +282,6 @@ class PessoaFisica(Cliente):
     @property
     def cpf(self):
         return self._cpf
-
-    def selecionar_cliente(clientes):
-        cpf_valido = False
-        cpf = ""
-        while not cpf_valido:
-            cpf = InformarValores.informar_cpf()
-            cliente = clientes.get(cpf)
-            if not cliente:
-                print(f"CPF {cpf} Não está cadastrado.")
-                input()
-                continue
-            else:
-                cpf_valido = True
-        return cpf
 
     def obter_conta(self, numero):
         conta = self._contas.get(numero)
@@ -491,11 +474,6 @@ class Transacao(ABC):
     def registrar(self, conta):
         pass
 
-    def obter_valor():
-        valor = InformarValores.informar_valor()
-
-        return valor
-
 
 class Saque(Transacao):
     def __init__(self, valor):
@@ -537,14 +515,14 @@ class CarregarDadosClientes:
     def fazer_carga_clientes(cls):
         lista_clientes = {
             "12345678901": {
-                "nome": "Jose da Siva jr.", 
-                "cpf": "12345678901", 
-                "data_nascimento": "10/10/2020", 
+                "nome": "Jose da Siva jr.",
+                "cpf": "12345678901",
+                "data_nascimento": "10/10/2020",
                 "endereco": "rua cem, 123 - cidade/uf - 12345678"},
             "23456789012": {
-                "nome": "Roberto Limita e Silva", 
-                "cpf": "23456789012", 
-                "data_nascimento": "12/12/2010", 
+                "nome": "Roberto Limita e Silva",
+                "cpf": "23456789012",
+                "data_nascimento": "12/12/2010",
                 "endereco": "rua cem, 123 - cidade/uf - 12345678"}
             }
         clientes = Pessoa()
